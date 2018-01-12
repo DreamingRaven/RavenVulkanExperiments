@@ -4,8 +4,11 @@ project(RavenVulkanExperiments)
 set(CMAKE_CXX_STANDARD 11)
 
 find_package(Vulkan REQUIRED)
+find_package(glfw3 REQUIRED)
+find_package(glm REQUIRED)
+
 include_directories(${Vulkan_INCLUDE_DIR})
 add_executable(${PROJECT_NAME} main.cpp)
-target_link_libraries(${PROJECT_NAME} Vulkan::Vulkan) # **not 100% on Vulkan::Vulkan
+target_link_libraries(${PROJECT_NAME} Vulkan::Vulkan glfw) # **not 100% on Vulkan::Vulkan
 
 # ** Vulkan seems to implement a similar import to Eigen3:Eigen needs checking!

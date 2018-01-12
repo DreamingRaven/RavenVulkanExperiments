@@ -1,7 +1,8 @@
+
 #include <iostream>
-#include <vulkan/vulkan.h>
+#include <vulkan/vulkan.h> // vk* = function, VK* = struct/enum, VK_* = enum values
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    std::cout<< "'ello, Wuld." <<std::endl;
     return 0;
 }
