@@ -9,8 +9,8 @@ find_package(glm REQUIRED)
 include_directories(${Vulkan_INCLUDE_DIR})
 add_executable(${PROJECT_NAME}
         ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/HelloTriangleApplication.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/HelloTriangleApplication.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/VulkanHandler.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/VulkanHandler.h
         ${CMAKE_CURRENT_SOURCE_DIR}/src/ExampleVariableArrayTemplate.tpp # not neccessary
         ${CMAKE_CURRENT_SOURCE_DIR}/src/ExampleVariableArrayTemplate.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/ExampleVariableArrayTemplate.h
