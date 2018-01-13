@@ -8,7 +8,7 @@ find_package(glfw3 REQUIRED)
 find_package(glm REQUIRED)
 
 include_directories(${Vulkan_INCLUDE_DIR})
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} main.cpp HelloTriangleApplication.cpp HelloTriangleApplication.h ExampleVariableArrayTemplate.cpp ExampleVariableArrayTemplate.h)
 target_link_libraries(${PROJECT_NAME} Vulkan::Vulkan glfw) # **not 100% on Vulkan::Vulkan
 
 # ** Vulkan seems to implement a similar import to Eigen3:Eigen needs checking!
