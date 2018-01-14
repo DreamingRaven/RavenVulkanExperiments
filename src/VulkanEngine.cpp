@@ -11,12 +11,20 @@ void VulkanEngine::createInstance() {
         // pointer to custom allocator callbacks, here nullptr
         // pointer to variable that which stores the new object handle
 
-    // get glfw extensions so Vulkan can interface with glfw
+    // finding + enumerating vk extensions
+    uint32_t vkExtensionCount = 0;
+    std::vector<VkExtensionProperties> vkExtensions(vkExtensionCount);
+    vkEnumerateInstanceExtensionProperties(nullptr, &vkExtensionCount, vkExtensions.data());
+    std::cout << vkExtensionCount   << " vk extensions supported:"   << std::endl;
+    for (const auto& extension : vkExtensions) {
+        std::cout << "\t" << extension.extensionName << std::endl;
+    } // TODO: find out why this does not print (likely never steps into 'range' for loop)
+
+    // finding + enumerating glfw extensions
     uint32_t glfwExtensionCount = 0;
     const char** glfwExtensions;
-    //vkEnumerateInstanceExtensionProperties(nullptr, &glfwExtensionCount, nullptr);
     glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
-    std::cout << glfwExtensionCount << " glfw extensions supported" << std::endl;
+    std::cout << glfwExtensionCount << " glfw extensions supported." << std::endl;
 
     // declare struct optional for Vulkan
     VkApplicationInfo appInfo = {};
@@ -41,7 +49,7 @@ void VulkanEngine::createInstance() {
 
     //VkResult result = vkCreateInstance(&createInfo, nullptr, &instance);
     if (vkCreateInstance(&createInfo, nullptr, &instance_m) != VK_SUCCESS) {
-    throw std::runtime_error("failed to create Vulkan instance! (VulkanEngine.cpp::createInstance())");
+        throw std::runtime_error("failed to create Vulkan instance!");
     }
 }
 
@@ -69,14 +77,15 @@ void VulkanEngine::initVulkan() {
 void VulkanEngine::mainLoop() {
 
     while(!glfwWindowShouldClose(window_m)) {
-        glfwPollEvents();
+        //glfwPollEvents();
+        glfwWaitEventsTimeout(0.7);
     }
 
 }
 
 /// func to clean up window :: void(null)
 void VulkanEngine::cleanup() {
-
+    vkDestroyInstance(instance_m, nullptr);
     glfwDestroyWindow(window_m);
     glfwTerminate();
 }
@@ -88,7 +97,7 @@ void VulkanEngine::run() {
 
     width_m  = 800; // TODO implement constructor that assigns these
     height_m = 600;
-    glfwTerminate();
+
     initWindow();
     initVulkan();
     mainLoop();
