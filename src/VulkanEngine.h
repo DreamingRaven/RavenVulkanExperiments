@@ -1,6 +1,4 @@
-//
-// Created by georgeraven on 1/13/18.
-//
+// GeorgeRaven:18/01/13 (yy/mm/dd)
 
 #ifndef RAVENVULKANEXPERIMENTS_VULKANENGINE_H
 #define RAVENVULKANEXPERIMENTS_VULKANENGINE_H
@@ -15,6 +13,7 @@
 #include <glm/mat4x4.hpp>
 
 #include <iostream>
+#include <vector>
 
 class VulkanEngine {
 private:

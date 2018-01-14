@@ -1,7 +1,4 @@
-//
-// Created by georgeraven on 1/13/18.
-//
-
+// GeorgeRaven:18/01/13 (yy/mm/dd)
 #include "VulkanEngine.h"
 
 //private: ---
