@@ -20,9 +20,11 @@ class VulkanEngine {
 private:
     // p members
     GLFWwindow* window_m;
+    VkInstance instance;
     int width_m;
     int height_m;
     // p funcs
+    void createInstance();
     void initWindow();
     void initVulkan();
     void mainLoop();
