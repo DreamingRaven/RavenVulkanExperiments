@@ -32,6 +32,7 @@ private:
 protected:
 public:
     void run();
+    VulkanEngine() = default;
 };
 
 

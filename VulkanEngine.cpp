@@ -6,11 +6,49 @@
 
 //private: ---
 
+/// func to handle VK instance creation :: void(null)
 void VulkanEngine::createInstance() {
 
-    
+    // general pattern for vulkan function params:
+        // pointer to struct with creation info
+        // pointer to custom allocator callbacks, here nullptr
+        // pointer to variable that which stores the new object handle
+
+    // get glfw extensions so Vulkan can interface with glfw
+    uint32_t glfwExtensionCount = 0;
+    const char** glfwExtensions;
+    //vkEnumerateInstanceExtensionProperties(nullptr, &glfwExtensionCount, nullptr);
+    glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
+    std::cout << glfwExtensionCount << " glfw extensions supported" << std::endl;
+
+    // declare struct optional for Vulkan
+    VkApplicationInfo appInfo = {};
+    // fill useful field of above struct struct
+    appInfo.sType =                 VK_STRUCTURE_TYPE_APPLICATION_INFO;
+    appInfo.pApplicationName =      WINDOW_NAME;//"Hello Triangle";
+    appInfo.applicationVersion =    VK_MAKE_VERSION(1, 0, 0);
+    appInfo.pEngineName =           "No Engine";
+    appInfo.engineVersion =         VK_MAKE_VERSION(1, 0, 0);
+    appInfo.apiVersion =            VK_API_VERSION_1_0;
+
+    // declare mandatory struct for instance creation
+    VkInstanceCreateInfo createInfo = {};
+    // fill struct; instance creation
+    createInfo.sType =                      VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+    createInfo.pApplicationInfo =           &appInfo;
+    // fill struct; glfw extensions.        here for style
+    createInfo.enabledExtensionCount =      glfwExtensionCount;
+    createInfo.ppEnabledExtensionNames =    glfwExtensions;
+    // fill struct; layers to enable...     for validation
+    createInfo.enabledLayerCount =          0;
+
+    //VkResult result = vkCreateInstance(&createInfo, nullptr, &instance);
+    if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
+    throw std::runtime_error("failed to create Vulkan instance! (VulkanEngine.cpp::createInstance())");
+    }
 }
 
+/// func to initialise GLFW window :: void(null)
 void VulkanEngine::initWindow() {
 
     glfwInit();
@@ -20,11 +58,9 @@ void VulkanEngine::initWindow() {
     window_m = glfwCreateWindow(width_m, height_m, WINDOW_NAME, nullptr, nullptr);
 }
 
+/// func to initialise VK :: void(null)
 void VulkanEngine::initVulkan() {
 
-//    uint32_t extensionCount = 0;
-//    vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
-//    std::cout << extensionCount << " extensions supported" << std::endl;
 //    glm::mat4 matrix;
 //    glm::vec4 vec;
 //    auto test = matrix * vec;
@@ -32,6 +68,7 @@ void VulkanEngine::initVulkan() {
     createInstance();
 }
 
+/// funct to control window :: void(null)
 void VulkanEngine::mainLoop() {
 
     while(!glfwWindowShouldClose(window_m)) {
@@ -40,6 +77,7 @@ void VulkanEngine::mainLoop() {
 
 }
 
+/// func to clean up window :: void(null)
 void VulkanEngine::cleanup() {
 
     glfwDestroyWindow(window_m);
@@ -48,6 +86,7 @@ void VulkanEngine::cleanup() {
 
 // public: ---
 
+/// func to coordinate the whole process of GLFW + VK starting :: void(null)
 void VulkanEngine::run() {
 
     width_m  = 800; // TODO implement constructor that assighns these
