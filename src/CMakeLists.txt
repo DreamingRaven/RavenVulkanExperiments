@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.9)
-#project(RavenVulkanExperiments)
 set(CMAKE_CXX_STANDARD 11)
 
 find_package(Vulkan REQUIRED)

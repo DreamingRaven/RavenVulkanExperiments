@@ -20,7 +20,7 @@ class VulkanEngine {
 private:
     // members
     GLFWwindow* window_m;
-    VkInstance instance;
+    VkInstance instance_m;
     int height_m;
     int width_m;
     // funcs

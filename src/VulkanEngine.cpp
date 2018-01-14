@@ -43,7 +43,7 @@ void VulkanEngine::createInstance() {
     createInfo.enabledLayerCount =          0;
 
     //VkResult result = vkCreateInstance(&createInfo, nullptr, &instance);
-    if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
+    if (vkCreateInstance(&createInfo, nullptr, &instance_m) != VK_SUCCESS) {
     throw std::runtime_error("failed to create Vulkan instance! (VulkanEngine.cpp::createInstance())");
     }
 }
@@ -89,7 +89,7 @@ void VulkanEngine::cleanup() {
 /// func to coordinate the whole process of GLFW + VK starting :: void(null)
 void VulkanEngine::run() {
 
-    width_m  = 800; // TODO implement constructor that assighns these
+    width_m  = 800; // TODO implement constructor that assigns these
     height_m = 600;
     glfwTerminate();
     initWindow();
