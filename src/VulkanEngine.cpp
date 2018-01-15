@@ -80,7 +80,6 @@ void VulkanEngine::mainLoop() {
         //glfwPollEvents();
         glfwWaitEventsTimeout(0.7);
     }
-
 }
 
 /// func to clean up window :: void(null)
