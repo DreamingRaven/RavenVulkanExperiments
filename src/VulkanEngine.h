@@ -20,8 +20,16 @@ private:
     // members
     GLFWwindow* window_m;
     VkInstance instance_m;
-    int height_m;
-    int width_m;
+    const int height_m = 600;   //TODO: set via constructor
+    const int width_m = 800;    //TODO: set via constructor
+    const std::vector<const char*> validationLayers_m {
+            "VK_LAYER_LUNARG_standard_validation"
+    };
+#ifndef NDEBUG // check if compiler is in debug or release mode
+    const bool enableValidationLayers_m = false;
+#else
+    const bool enableValidationLayers_m = true;
+#endif
     // funcs
     void createInstance();
     void initWindow();

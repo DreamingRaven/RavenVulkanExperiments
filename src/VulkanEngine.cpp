@@ -6,11 +6,6 @@
 /// func to handle VK instance creation :: void(null)
 void VulkanEngine::createInstance() {
 
-    // general pattern for vulkan function params:
-        // pointer to struct with creation info
-        // pointer to custom allocator callbacks, here nullptr
-        // pointer to variable that which stores the new object handle
-
     // finding + enumerating vk extensions
     uint32_t vkExtensionCount = 0;
     std::vector<VkExtensionProperties> vkExtensions(vkExtensionCount);
@@ -93,10 +88,7 @@ void VulkanEngine::cleanup() {
 
 /// func to coordinate the whole process of GLFW + VK starting :: void(null)
 void VulkanEngine::run() {
-
-    width_m  = 800; // TODO implement constructor that assigns these
-    height_m = 600;
-
+    std::cout << "debug? " << (enableValidationLayers_m ? "true" : "false") << std::endl;
     initWindow();
     initVulkan();
     mainLoop();
