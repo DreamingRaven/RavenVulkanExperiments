@@ -2,7 +2,7 @@
 
 #ifndef RAVENVULKANEXPERIMENTS_VULKANENGINE_H
 #define RAVENVULKANEXPERIMENTS_VULKANENGINE_H
-#define WINDOW_NAME "So long and thanks for all the fish"
+#define WINDOW_NAME "Vulkan GLFW window"
 
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
@@ -20,8 +20,8 @@ private:
     // members
     GLFWwindow* window_m;
     VkInstance instance_m;
-    const int height_m = 600;   //TODO: set via constructor
-    const int width_m = 800;    //TODO: set via constructor
+    const int height_m = 800;   //TODO: set via constructor
+    const int width_m = 700;    //TODO: set via constructor
     const std::vector<const char*> validationLayers_m {
             "VK_LAYER_LUNARG_standard_validation"
     };
